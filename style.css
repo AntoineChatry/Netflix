@@ -1,0 +1,44 @@
+body, html {
+	height: 100%;
+	background-image: url("netflix.png");
+	background-position: center;
+ 	background-repeat: no-repeat;
+  	background-size: cover;
+}
+
+form{
+	
+	color: white;
+	padding: 175px;
+	margin-right: 360px;
+	margin-top: 50%
+	height: 100%;
+	display: block;
+
+	text-align: right;
+	
+}
+
+.Inscrire{
+	margin-right: 105px;
+}
+.connect{
+	margin-right: 73px;
+}
+.connec{
+	margin-right: 65px;
+}
+.motdepasse{
+	text-align: center;
+	color: red;
+	
+
+}
+.mail{
+	color: red;
+	text-align: center;
+}
+
+.admin{
+	color: white;
+}

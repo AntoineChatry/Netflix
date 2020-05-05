@@ -1,0 +1,38 @@
+html, body{
+	background-color: #4d4d4d;
+	font-family: 'Bebas Neue', cursive;
+	
+}
+li:hover{
+	background-color: #777373;
+	
+
+}
+body>#menu{
+  position:fixed;
+
+}
+.logo{
+	width: 95px;
+	height: 95px;
+	margin-left: 10px;
+}
+ul, li{
+	display: block;
+	list-style-type: none;
+
+}
+.menu{
+	background-color: black;
+	width: 20%;
+	height: 655px;
+}
+a{
+	color:white;
+	}
+#piechart, h1{
+
+	margin-left: 265px;
+	height: 40px;
+
+}

@@ -1,0 +1,89 @@
+Les Séries:
+
+
+$QUERY= 'SELECT t1.nom, t1.thematique, t1.serie_ou_film, t1.date_creation, t1.resume, t1.image, t1.trailer 
+					FROM series t1
+					WHERE t1.id = ?';
+
+$QUERY= 'INSERT INTO series(nom, thematique, serie_ou_film, resume, date_creation, image, image_mini, trailer) VALUES(?, ?, ?, ?, ?, ?, ?, ?) ';
+
+
+$QUERY= 'DELETE FROM series WHERE id = ?';
+
+$QUERY = 'SELECT count(*) as nbr FROM series WHERE serie_ou_film = 1';
+
+$QUERY = 'SELECT t1.id, t1.nom, t1.thematique, t1.serie_ou_film, date_format(t1.date_creation,\'%d/%m/%Y\') as date_creation, t1.image_mini 
+					FROM series t1
+					WHERE serie_ou_film = 1 
+					ORDER BY t1.date_creation DESC';
+
+$QUERY = 'SELECT t1.id, t1.nom, t1.thematique, t1.serie_ou_film, date_format(t1.date_creation,\'%d/%m/%Y\') as date_creation, t1.image_mini 
+					FROM series t1
+					WHERE serie_ou_film = 0 
+					ORDER BY t1.date_creation DESC';
+
+$QUERY = 'SELECT t1.id, t1.nom, t1.thematique, t1.serie_ou_film, date_format(t1.date_creation,\'%d/%m/%Y\') as date_creation, t1.image_mini 
+					FROM series t1
+					ORDER BY t1.date_creation DESC';
+
+------------------------------------------------------------------------------------------------------------
+
+Les Membres:
+
+$QUERY = 'SELECT count(*) as nbr FROM membres';
+
+$QUERY = 'SELECT pseudo, email, password, date_format(date_creation,\'%d/%m/%Y à %H:%i\') as date_creation, admin  
+				FROM membres
+				ORDER BY date_creation DESC';
+
+------------------------------------------------------------------------------------------------------------
+
+Les Avis:
+
+$QUERY = 'SELECT count(*) as nbr
+		FROM avis t1
+		WHERE t1.id_serie = ?';
+
+$QUERY = 'SELECT avg(t1.note) as notemoy
+					FROM avis t1, membres t2, series t3 
+					WHERE t1.id_serie=t3.id and t1.id_membre=t2.id and t1.id_serie = ?
+					ORDER BY t1.date_creation DESC';
+
+$QUERY = 'SELECT t2.pseudo as pseudo, t1.note as note , date_format(t1.date_creation,\'%d/%m/%Y à %H:%i\') as date_creation, t1.commentaire as commentaire
+					FROM avis t1, membres t2, series t3 
+					WHERE t1.id_serie=t3.id and t1.id_membre=t2.id and t1.id_serie = ?
+					ORDER BY t1.date_creation DESC';
+
+$QUERY = 'SELECT count(*) as nbr
+		FROM avis t1, membres t2, series t3 
+		WHERE t1.id_serie=t3.id and t1.id_membre=t2.id';
+
+$QUERY = 'SELECT t2.pseudo as pseudo, t3.nom as nom, t1.note as note, date_format(t1.date_creation,\'%d/%m/%Y à %H:%i\') as date_creation, t3.image_mini as image, t1.id_serie as id 
+				FROM avis t1, membres t2, series t3 
+				WHERE t1.id_serie=t3.id and t1.id_membre=t2.id
+				ORDER BY t1.date_creation DESC';
+
+------------------------------------------------------------------------------------------------------------
+
+Statistiques:
+
+$QUERY = 'SELECT distinct(t1.id_serie) as id_serie, t3.nom as nom 
+				FROM avis t1, membres t2, series t3 
+				WHERE t1.id_serie = t3.id and t1.id_membre = t2.id';
+
+$QUERY = 'SELECT count(id_serie) as nbr FROM avis WHERE id_serie = ?';
+
+------------------------------------------------------------------------------------------------------------
+
+Recherche:
+
+$QUERY = 'SELECT count(*) as nbr
+			FROM avis t1, membres t2
+			WHERE t1.id_membre = t2.id and t1.commentaire like "%'.$texte.'%"';
+
+$QUERY = 'SELECT t2.pseudo as pseudo, date_format(t1.date_creation,\'%d/%m/%Y\') as date_creation, t1.commentaire as commentaire
+			FROM avis t1, membres t2
+			WHERE t1.id_membre = t2.id and t1.commentaire like "%'.$texte.'%"
+			ORDER BY t1.date_creation desc';
+
+
